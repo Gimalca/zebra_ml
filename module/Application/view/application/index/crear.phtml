@@ -1,0 +1,167 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/css/admin-forms.css">
+</head>
+<section id="content" class="table-layout">
+
+    <div class="tray tray-center p25 va-t posr">
+
+        <!-- create new order panel -->
+        <div class="panel mb25 mt5">
+            <div class="panel-heading">
+                <span class="panel-title">Agregar Comprador</span>
+            </div>
+            <div class="panel-body p20 pb10">
+
+                <div class="tab-content pn br-n admin-form">
+                    <div id="tab1_3" class="tab-pane  active">
+                        <form method="post" action="<?php echo $this->basePath($this->form->getAttribute('action')) ?>" id="admin-form" enctype="multipart/form-data">
+                            <div class="section">
+                                <label for="lastaddr" class="field prepend-icon">
+                                    <?php $email = $this->form->get('email') ?>
+                                    <?php echo $this->formInput($email) ?>
+                                    <label for="lastaddr" class="field-icon"><i class="fa fa-envelope" style="top:13px;"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($email) ?> </div>
+                                </label>
+                            </div>
+                            <!-- end section -->
+
+                            <div class="section row">
+                                <div class="col-md-6">
+                                    <label for="zip" class="field prepend-icon">
+                                        <?php $nombre = $this->form->get('nombre') ?>
+                                        <?php echo $this->formInput($nombre) ?>
+                                        <label for="zip" class="field-icon"><i class="fa fa-user" style="top:13px;"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($nombre) ?> </div>
+                                    </label>
+                                </div>
+                                <!-- end section -->
+
+                                <div class="col-md-6">
+                                    <label for="city" class="field prepend-icon">
+                                        <?php $seudonimo = $this->form->get('seudonimo') ?>
+                                        <?php echo $this->formInput($seudonimo) ?>
+                                        <label for="city" class="field-icon"><i class="fa fa-user" style="top:13px;"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($seudonimo) ?> </div>
+                                    </label>
+                                </div>
+
+                            </div>
+                            <!-- end section row section -->
+
+                            <div class="section row mbn">
+                                <div class="col-sm-4 col-sm-offset-8">
+                                    <p class="text-right">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- end section -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+    /* demo page styles */
+    body {
+        min-height: 2300px;
+    }
+    .affix-pane.affix {
+        top: 80px;
+    }
+    .admin-form .panel.heading-border:before,
+    .admin-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+    .custom-nav-animation li {
+        display: none;
+    }
+    .custom-nav-animation li.animated {
+        display: block;
+    }
+
+    #amount {
+        color: #f6931f;
+        font-weight: bold;
+        background: transparent;
+        border: 0;
+    }
+</style>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+
+        $.validator.addMethod("alnum", function (value, element) {
+            return this.optional(element) || /([a-zA-Z0-9])\w+/i.test(value);
+        }, "Username must contain only letters, numbers, or dashes.");
+
+        $.validator.addMethod("alfa", function (value, element) {
+            return this.optional(element) || /^[a-z]+$/i.test(value);
+        }, "Username must contain only letters, numbers, or dashes.");
+
+        $("#admin-form").validate({
+            /* @validation states + elements 
+             ------------------------------------------- */
+
+            errorClass: "state-error",
+            validClass: "state-success",
+            errorElement: "em",
+            /* @validation rules 
+             ------------------------------------------ */
+
+            rules: {
+                seudonimo: {
+                    required: true,
+                    alnum: true
+                },
+                nombre: {
+                    required: true,
+                    alfa: true
+                },
+                email: {
+                    required: true,
+                }
+            },
+            /* @validation error messages 
+             ---------------------------------------------- */
+
+            messages: {
+                seudonimo: {
+                    required: 'El Campo es requerido',
+                    alnum: 'Introdujo un seudonimo no valido'
+                },
+                nombre: {
+                    required: 'El Campo es requerido',
+                    alfa: 'Introdujo un nombre no valido'
+                },
+                email: {
+                    required: 'El Campo es requerido'
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+            },
+            errorPlacement: function (error, element) {
+                if (element.is(":radio") || element.is(":checkbox")) {
+                    element.closest('.option-group').after(error);
+                } else {
+                    error.insertAfter(element.parent());
+                }
+            }
+
+        });
+    });
+</script>

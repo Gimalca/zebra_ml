@@ -1,55 +1,363 @@
-<?php echo $this->doctype(); ?>
+/* global Core */
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+/* global Core */
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+<?php
+$user = new \Zend\Authentication\AuthenticationService();
+if ($user->hasIdentity()) {
+    $identity = $user->getIdentity();
+    ?>
 
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Zebra </title>
+            <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+            <meta name="description" content="AdminDesigns - SHARED ON THEMELOCK.COM">
+            <meta name="author" content="AdminDesigns">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
 
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+            <!-- Font CSS (Via CDN) -->
+            <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'>
+            <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
+            <!-- Theme CSS -->
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/skin/default_skin/css/theme.css">
+
+            <!-- Admin Panels CSS -->
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/admin-tools/admin-plugins/admin-panels/adminpanels.css">
+
+            <!-- Admin Forms CSS -->
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/css/admin-forms.css">
+
+            <!-- Favicon -->
+            <link rel="shortcut icon" href="<?php echo $this->basePath() ?>/assets/img/favicon1.ico">
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/vendor/plugins/datepicker/css/bootstrap-datetimepicker.min.css">
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/vendor/plugins/daterange/daterangepicker.css">
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/vendor/plugins/colorpicker/css/bootstrap-colorpicker.min.css">
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/vendor/plugins/tagmanager/tagmanager.css">
+        </head>
+
+        <body class="dashboard-page sb-l-o sb-r-c onload-check" hola-ext-player="1">
+
+
+            <!-- Start: Main -->
+            <div id="main">
+
+                <!-- Start: Header -->
+
+                <header class="navbar navbar-fixed-top bg-light">
+                    <div class="navbar-branding">
+                        <a class="navbar-brand" href="<?php echo $this->basePath() ?>/application"> <b>Admin</b> 
+                        </a>
+                    </div>
+
+                    <form class="navbar-form navbar-left navbar-search ml5" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar..." >
+                        </div>
+                    </form>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?php echo $this->basePath() ?>/assets/img/logos/logo.jpg" alt="avatar" class="mw30 br64 mr15">
+                                <span>Hola, <?php echo $this->escapeHtml($identity->usr_name) ?></span>
+                                <span class="caret caret-tp hidden-xs"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
+                                <li class="br-t of-h">
+                                    
+                                    <a href="<?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'logout')); ?>" class="fw600 p12 animated animated-short fadeInDown">
+                                        <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
-        <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
-    </body>
-</html>
+
+                </header>
+                <!-- End: Header -->
+
+                <!-- Start: Sidebar -->
+                <aside id="sidebar_left" class="nano nano-primary">
+                    <div class="nano-content">
+
+                        <!-- Start: Sidebar Header -->
+                        <header class="sidebar-header">
+                            <div class="user-menu">
+                                <div class="row text-center mbn">
+                                    <div class="col-xs-4">
+                                        <a href="<?php echo $this->basePath() ?>/application/index/listar" class="text-primary" data-toggle="tooltip" data-placement="top" data-original-title="" title="">
+                                            <span class="glyphicons glyphicons-home"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <!-- End: Sidebar Header -->
+
+                        <!-- sidebar menu -->
+                        <ul class="nav sidebar-menu">
+
+                            <li class="sidebar-label pt15">Acciones</li>
+                            <li>
+                            </li><li>
+                                <a href="<?php echo $this->basePath() ?>/application/index/crear"><span class="glyphicons glyphicons-book"></span>Registrar Usuario</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->basePath() ?>/application/registro/confirmar"><span class="glyphicons glyphicons-book"></span>Formulario de Usuario</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->basePath() ?>/application/index/listar"><span class="glyphicons glyphicons-book"></span>Listado de usuarios</a>
+                            </li>
+
+                        </ul></div>
+                </aside>
+
+                <?php echo $this->basePath() ?>
+
+                <!-- Start: Content-Wrapper -->
+                <section id="content_wrapper">
+
+                    <!-- Start: Topbar-Dropdown -->
+                    <div id="topbar-dropmenu">
+                        <div class="topbar-menu row">
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-success">
+                                    <span class="metro-icon glyphicons glyphicons-inbox"></span>
+                                    <p class="metro-title">Messages</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-info">
+                                    <span class="metro-icon glyphicons glyphicons-parents"></span>
+                                    <p class="metro-title">Users</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-alert">
+                                    <span class="metro-icon glyphicons glyphicons-headset"></span>
+                                    <p class="metro-title">Support</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-primary">
+                                    <span class="metro-icon glyphicons glyphicons-cogwheels"></span>
+                                    <p class="metro-title">Settings</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-warning">
+                                    <span class="metro-icon glyphicons glyphicons-facetime_video"></span>
+                                    <p class="metro-title">Videos</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-2">
+                                <a href="#" class="metro-tile bg-system">
+                                    <span class="metro-icon glyphicons glyphicons-picture"></span>
+                                    <p class="metro-title">Pictures</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php echo $this->content; ?>
+
+                </section>
+
+                <!-- jQuery -->
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/vendor/jquery/jquery-1.11.1.min.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+                <!-- Bootstrap -->
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/bootstrap/bootstrap.min.js"></script>
+
+                <!-- Forms Javascript -->
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-tcm-month.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-ui-timepicker.min.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-ui-touch-punch.min.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.spectrum.min.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.stepper.min.js"></script>
+
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/advanced/steps/jquery.steps.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.validate.min.js"></script>
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/additional-methods.min.js"></script>
+
+
+                <!-- Theme Javascript -->
+                <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/utility/utility.js"></script>
+                <style>
+
+                    /* demo page styles */
+                    body {
+                        min-height: 2300px;
+                    }
+                    .affix-pane.affix {
+                        top: 80px;
+                    }
+                    .admin-form .panel.heading-border:before,
+                    .admin-form .panel .heading-border:before {
+                        transition: all 0.7s ease;
+                    }
+                    .custom-nav-animation li {
+                        display: none;
+                    }
+                    .custom-nav-animation li.animated {
+                        display: block;
+                    }
+
+                    #amount {
+                        color: #f6931f;
+                        font-weight: bold;
+                        background: transparent;
+                        border: 0;
+                    }
+                </style>
+
+                <script type="text/javascript">
+                    jQuery(document).ready(function () {
+
+
+                        // Init Theme Core    
+                        Core.init();
+
+                        // Init Demo JS    
+                        Demo.init();
+
+
+
+                        // Init Widget Demo JS
+                        // demoHighCharts.init();
+
+                        // Because we are using Admin Panels we use the OnFinish 
+                        // callback to activate the demoWidgets. It's smoother if
+                        // we let the panels be moved and organized before 
+                        // filling them with content from various plugins
+
+                        // Init plugins used on this page
+                        // HighCharts, JvectorMap, Admin Panels
+
+                        // Init Admin Panels on widgets inside the ".admin-panels" container
+                        $('.admin-panels').adminpanel({
+                            grid: '.admin-grid',
+                            draggable: true,
+                            preserveGrid: true,
+                            mobile: false,
+                            callback: function () {
+                                bootbox.confirm('<h3>A Custom Callback!</h3>', function () {
+                                });
+                            },
+                            onFinish: function () {
+                                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+
+                                // Init the rest of the plugins now that the panels
+                                // have had a chance to be moved and organized.
+                                // It's less taxing to organize empty panels
+                                demoHighCharts.init();
+                                runVectorMaps();
+
+                                // We also refresh any "in-view" waypoints to ensure
+                                // the correct position is being calculated after the 
+                                // Admin Panels plugin moved everything
+                                Waypoint.refreshAll();
+
+                            },
+                            onSave: function () {
+                                $(window).trigger('resize');
+                            }
+                        });
+
+                        // Widget VectorMap
+                        function runVectorMaps() {
+
+                            // Jvector Map Plugin
+                            var runJvectorMap = function () {
+                                // Data set
+                                var mapData = [900, 700, 350, 500];
+                                // Init Jvector Map
+                                $('#WidgetMap').vectorMap({
+                                    map: 'us_lcc_en',
+                                    //regionsSelectable: true,
+                                    backgroundColor: 'transparent',
+                                    series: {
+                                        markers: [{
+                                                attribute: 'r',
+                                                scale: [3, 7],
+                                                values: mapData
+                                            }]
+                                    },
+                                    regionStyle: {
+                                        initial: {
+                                            fill: '#E5E5E5'
+                                        },
+                                        hover: {
+                                            "fill-opacity": 0.3
+                                        }
+                                    },
+                                    markers: [{
+                                            latLng: [37.78, -122.41],
+                                            name: 'San Francisco,CA'
+                                        }, {
+                                            latLng: [36.73, -103.98],
+                                            name: 'Texas,TX'
+                                        }, {
+                                            latLng: [38.62, -90.19],
+                                            name: 'St. Louis,MO'
+                                        }, {
+                                            latLng: [40.67, -73.94],
+                                            name: 'New York City,NY'
+                                        }],
+                                    markerStyle: {
+                                        initial: {
+                                            fill: '#a288d5',
+                                            stroke: '#b49ae0',
+                                            "fill-opacity": 1,
+                                            "stroke-width": 10,
+                                            "stroke-opacity": 0.3,
+                                            r: 3
+                                        },
+                                        hover: {
+                                            stroke: 'black',
+                                            "stroke-width": 2
+                                        },
+                                        selected: {
+                                            fill: 'blue'
+                                        },
+                                        selectedHover: {}
+                                    },
+                                });
+                                // Manual code to alter the Vector map plugin to 
+                                // allow for individual coloring of countries
+                                var states = ['US-CA', 'US-TX', 'US-MO',
+                                    'US-NY'];
+                                var colors = [bgWarningLr, bgPrimaryLr, bgInfoLr, bgAlertLr];
+                                var colors2 = [bgWarning, bgPrimary, bgInfo, bgAlert];
+                                $.each(states, function (i, e) {
+                                    $("#WidgetMap path[data-code=" + e + "]").css({
+                                        fill: colors[i]
+                                    });
+                                });
+                                $('#WidgetMap').find('.jvectormap-marker')
+                                        .each(function (i, e) {
+                                            $(e).css({
+                                                fill: colors2[i],
+                                                stroke: colors2[i]
+                                            });
+                                        });
+                            }
+
+                            if ($('#WidgetMap').length) {
+                                runJvectorMap();
+                            }
+                        }
+
+                    });
+                </script>
+
+        </body>
+    </html>
+    <?php
+} else {
+    
+}
+?>

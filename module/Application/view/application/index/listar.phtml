@@ -1,0 +1,87 @@
+<section id="content" class="table-layout">
+
+    <!-- begin: .tray-center -->
+    <div class="tray tray-center p25 va-t posr">
+
+
+
+        <!-- recent orders table -->
+        <div class="panel">
+            <div class="panel-body pn">
+                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <thead>
+                        <tr class="bg-light">
+                            <th class="">Nombre</th>
+                            <th class="">Email</th>
+                            <th class="">Fecha</th>
+                            <th class="">Producto</th>
+                            <th class="">Monto</th>
+                            <th class=""></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->registros as $registros) : ?>
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="exampleModalLabel"><?php echo $registros->getNombre(); ?> <?php echo $registros->getApellido(); ?></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-offset-4 col-md-8"><label for="recipient-name" class="control-label">Pseudonimo:</label> <?php echo $registros->getSeudonimo(); ?> </div>
+                                        <div class="col-md-4"><label for="recipient-name" class="control-label">Nombre:</label>  <?php echo $registros->getNombre(); ?></div><div class="col-md-4"><label for="recipient-name" class="control-label">Apellido:</label>  <?php echo $registros->getApellido(); ?></div><div class="col-md-4"><label for="recipient-name" class="control-label">Cedula o Rif:</label>  <?php echo $registros->getTipoid(); ?><?php echo $registros->getId(); ?></div>
+                                        <label for="recipient-name" class="control-label col-md-4">Email:</label> <?php echo $registros->getEmail(); ?>
+                                        
+                                        <?php echo $registros->getEmail(); ?>
+                                        <?php echo $registros->getSeudonimo(); ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <tr>
+                            <td class=""><?php echo $registros->getNombre(); ?></td>
+                            <td class=""><?php echo $registros->getEmail(); ?></td>
+                            <td class=""><?php echo $registros->getDatepicker1(); ?></td>
+                            <td class=""><?php echo $registros->getProducto(); ?></td>
+                            <td class=""><?php echo $registros->getMonto(); ?></td>
+                            <td class="">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"  data-whatever="<?php echo $registros->getRegistro_id() ?>">Large modal</button>
+
+                                <a href="<?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'editar', 'id' => $registros->getRegistro_id())) ?>" >Editar <?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'editar', 'id' => $registros->getRegistro_id())) ?></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- end: .tray-center -->
+
+
+    <!-- end: .tray-right -->
+
+</section>
+<script type="text/javascript" src="<?php echo $this->basePath() ?>/vendor/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        });
+    });
+</script>
+
+

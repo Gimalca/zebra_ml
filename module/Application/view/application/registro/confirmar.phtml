@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <title>AdminDesigns - A Responsive HTML5 Admin UI Framework</title>
+        <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+        <meta name="description" content="AdminDesigns - A Responsive HTML5 Admin UI Framework">
+        <meta name="author" content="AdminDesigns">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Font CSS (Via CDN) -->
+        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800'>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,300">
+
+        <!-- Theme CSS -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/skin/default_skin/css/theme.css">
+
+        <!-- Admin Forms CSS -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/css/admin-forms.css">
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+       <![endif]-->
+    </head>
+
+    <body class="external-page sb-l-c sb-r-c">
+
+        <!-- Start: Settings Scripts -->
+        <script>
+            var boxtest = localStorage.getItem('boxed');
+            if (boxtest === 'true') {
+                document.body.className += ' boxed-layout';
+            }
+        </script>
+        <!-- End: Settings Scripts -->
+
+        <!-- Start: Main -->
+        <div id="main" class="animated fadeIn">
+
+            <!-- Start: Content-Wrapper -->
+            <section id="content_wrapper">
+
+                <!-- begin canvas animation bg -->
+                <div id="canvas-wrapper">
+                    <canvas id="demo-canvas"></canvas>
+                </div>
+
+                <!-- Begin: Content -->
+                <section id="content" class="">
+
+                    <div class="admin-form theme-primary mw800" style="margin-top: 3%;" id="login1">
+
+                        <div class="row mb15 table-layout">
+
+                            <div class="col-xs-4">
+                                <a href="dashboard.html" title="Return to Dashboard">
+                                    <?php echo $this->title ?><img src="<?php echo $this->basePath() ?>/assets/img/logos/logo_white.png" title="AdminDesigns Logo" class="img-responsive w250">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                            <div class="panel  mt10 br-n">
+                            <div class="panel-body">
+                                <form method="post" action="<?php echo $this->basePath($this->form->getAttribute('action')) ?>" id="admin-form" enctype="multipart/form-data">
+                                    <div class="panel-body p25 bg-light">
+                                        <div class="section-divider mt10 mb40">
+                                            <span>Datos del Cliente</span>
+                                        </div>
+                                        <!-- .section-divider -->
+
+                                        <div class="section row">
+                                            <div class="col-md-4">
+                                                <label for="seudonimo" class="field prepend-icon">
+                                                    <?php $seudonimo = $this->form->get('seudonimo') ?>
+                                                    <?php echo $this->formInput($seudonimo) ?>
+                                                    <label for="seudonimo" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+
+                                            <div class="col-md-4">
+                                                <label for="nombre" class="field prepend-icon">
+                                                    <?php $nombre = $this->form->get('nombre') ?>
+                                                    <?php echo $this->formInput($nombre) ?>
+                                                    <label for="nombre" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($nombre) ?> </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="apellido" class="field prepend-icon">
+                                                    <?php $apellido = $this->form->get('apellido') ?>
+                                                    <?php echo $this->formInput($apellido) ?>
+                                                    <label for="apellido" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($apellido) ?> </div>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+                                        </div>
+                                        <!-- end .section row section -->
+
+                                        <div class="section row">
+                                            <div class="col-md-1">
+                                                <label class="field select">
+                                                    <?php $tipoid = $this->form->get('tipoid') ?>
+                                                    <?php echo $this->formSelect($tipoid) ?>
+                                                    <i class="arrow double" style="width: 16px;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="id" class="field prepend-icon">
+                                                    <?php $id = $this->form->get('id') ?>
+                                                    <?php echo $this->formInput($id) ?>
+                                                    <label for="id" class="field-icon"><i class="glyphicons glyphicons-vcard"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($id) ?> </div>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+
+                                            <div class="col-md-4">
+                                                <label for="fijo" class="field prepend-icon">
+                                                    <?php $fijo = $this->form->get('fijo') ?>
+                                                    <?php echo $this->formInput($fijo) ?>
+                                                    <label for="fijo" class="field-icon"><i class="fa fa-phone"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($fijo) ?> </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="movil" class="field prepend-icon">
+                                                    <?php $celular = $this->form->get('celular') ?>
+                                                    <?php echo $this->formInput($celular) ?>
+                                                    <label for="movil" class="field-icon"><i class="fa fa-phone"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($celular) ?> </div>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="section row">
+                                            <div class="col-md-6">
+                                                <label for="email" class="field prepend-icon">
+                                                    <?php $email = $this->form->get('email') ?>
+                                                    <?php echo $this->formInput($email) ?>
+                                                    <label for="email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($email) ?> </div>
+                                                </label>
+                                            </div>                                            
+                                            <div class="col-md-6">
+                                            <label for="email" class="field prepend-icon">
+                                                <?php $emailconf = $this->form->get('emailconf') ?>
+                                                <?php echo $this->formInput($emailconf) ?>
+                                                <label for="email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($emailconf) ?> </div>
+                                            </label>
+                                            <!-- end .smart-widget section -->
+                                        </div>
+                                            <!-- end .smart-widget section -->
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="section-divider mv40">
+                                            <span>Datos del Producto</span>
+                                        </div>
+
+                                        <div class="section row">
+                                            <div class="col-md-4">
+                                                <label for="producto" class="field prepend-icon">
+                                                    <?php $producto = $this->form->get('producto') ?>
+                                                    <?php echo $this->formInput($producto) ?>
+                                                    <label for="producto" class="field-icon"><i class="glyphicons glyphicons-shopping_bag"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($producto) ?> </div>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $cantidad = $this->form->get('cantidad') ?>
+                                                    <?php echo $this->formInput($cantidad) ?>
+                                                </label>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="modelo" class="field prepend-icon">
+                                                    <?php $modelo = $this->form->get('modelo') ?>
+                                                    <?php echo $this->formInput($modelo) ?>
+                                                    <label for="modelo" class="field-icon"><i class="fa fa-tag"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($modelo) ?> </div>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="section">
+                                            <label for="detalle" class="field prepend-icon">
+                                                <?php $detalle = $this->form->get('detalle') ?>
+                                                <?php echo $this->formInput($detalle) ?>
+                                                <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($detalle) ?> </div>
+                                            </label>
+                                            <!-- end .smart-widget section -->
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="section-divider mv40">
+                                            <span>Datos del Pago</span>
+                                        </div>
+
+                                        <div class="section row">
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $metodo = $this->form->get('metodo') ?>
+                                                    <?php echo $this->formSelect($metodo) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($metodo) ?> </div>
+                                            </div>
+                                            <!-- end section -->
+
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $receptor = $this->form->get('receptor') ?>
+                                                    <?php echo $this->formSelect($receptor) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($receptor) ?> </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $emisor = $this->form->get('emisor') ?>
+                                                    <?php echo $this->formSelect($emisor) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($emisor) ?> </div>
+                                            </div>
+                                            <!-- end section -->
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="section row">
+                                            <div class="col-md-6">
+                                                <label for="numero" class="field prepend-icon">
+                                                    <?php $transferencia = $this->form->get('transferencia') ?>
+                                                    <?php echo $this->formInput($transferencia) ?>
+                                                    <label for="transferencia" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($transferencia) ?> </div>
+                                                </label>                                            
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="field prepend-icon file">
+                                                    <span class="button btn-primary">Sube una Foto</span>
+                                                    <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('imagen').value = this.value;">
+                                                    <?php $imagen = $this->form->get('imagen') ?>
+                                                    <?php echo $this->formInput($imagen) ?>
+                                                    <label class="field-icon"><i class="fa fa-upload"></i>
+                                                    </label>                                                
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="section row">
+                                            <div class="col-md-6">
+                                                <label for="datepicker1" class="field prepend-icon">
+                                                    <?php $datepicker1 = $this->form->get('datepicker1') ?>
+                                                    <?php echo $this->formInput($datepicker1) ?>
+                                                    <label class="field-icon"><i class="fa fa-calendar-o"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($datepicker1) ?> </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="monto" class="field prepend-icon">
+                                                    <?php $monto = $this->form->get('monto') ?>
+                                                    <?php echo $this->formInput($monto) ?>
+                                                    <label for="monto" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($monto) ?> </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="section-divider mv40">
+                                            <span>Datos del Envio</span>
+                                        </div>
+
+                                        <div class="section row">
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $tipo = $this->form->get('tipo') ?>
+                                                    <?php echo $this->formSelect($tipo) ?>
+                                                    <i class="arrow double"></i>                                                
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($tipo) ?> </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $encomienda = $this->form->get('encomienda') ?>
+                                                    <?php echo $this->formSelect($encomienda) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($encomienda) ?> </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $envio = $this->form->get('envio') ?>
+                                                    <?php echo $this->formSelect($envio) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($envio) ?> </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="section">
+                                            <label for="direccion" class="field prepend-icon">
+                                                <?php $direccion = $this->form->get('direccion') ?>
+                                                <?php echo $this->formInput($direccion) ?>
+                                                <label for="direccion" class="field-icon"><i class="fa fa-user"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($direccion) ?> </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="section row">
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $ciudad = $this->form->get('ciudad') ?>
+                                                    <?php echo $this->formSelect($ciudad) ?>
+                                                    <i class="arrow double"></i>
+                                                    </label>
+                                                    <div class="error"> <?php echo $this->formelementerrors($ciudad) ?> </div>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="field select">
+                                                    <?php $estado = $this->form->get('estado') ?>
+                                                    <?php echo $this->formSelect($estado) ?>
+                                                    <i class="arrow double"></i>
+                                                </label>
+                                                <div class="error"> <?php echo $this->formelementerrors($estado) ?> </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="observaciones" class="field prepend-icon">
+                                                    <?php $observaciones = $this->form->get('observaciones') ?>
+                                                    <?php echo $this->formInput($observaciones) ?>
+                                                    <label for="observaciones" class="field-icon"><i class="fa fa-user"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="section-divider mv40">
+                                            <span>Revision de Terminos</span>
+                                        </div>
+                                        <!-- .section-divider -->
+
+                                        <div class="section mb15">
+                                            <label class="option block mt15">
+                                                <?php $terminos = $this->form->get('terminos') ?>
+                                                <?php echo $this->formCheckbox($terminos) ?>
+                                                <span class="checkbox"></span>I agree to the
+                                                <a href="#" class="smart-link"> terms of use. </a>
+                                            </label>
+                                            <div class="error"> <?php echo $this->formelementerrors($terminos) ?> </div>
+                                        </div>
+                                        <!-- end section -->
+
+                                    </div>
+                                    <!-- end .form-body section -->
+                                    <div class="panel-footer clearfix col-md-12">
+                                        <div class="col-md-2 col-md-offset-10">
+                                            <button type="submit" class="button btn-primary pull-right">Registrar</button>
+                                        </div>                                
+                                    </div>
+                                    <!-- end .form-footer section -->
+                                </form>
+                            </div>
+                                
+                            </div>  
+                        
+
+                    </div>
+
+                </section>
+                <!-- End: Content -->
+
+            </section>
+            <!-- End: Content-Wrapper -->
+
+        </div>
+        <!-- End: Main -->
+
+        <!-- BEGIN: PAGE SCRIPTS -->
+
+        <style>
+
+            /* demo page styles */
+            body {
+                min-height: 2300px;
+            }
+            .affix-pane.affix {
+                top: 80px;
+            }
+            .admin-form .panel.heading-border:before,
+            .admin-form .panel .heading-border:before {
+                transition: all 0.7s ease;
+            }
+            .custom-nav-animation li {
+                display: none;
+            }
+            .custom-nav-animation li.animated {
+                display: block;
+            }
+
+            #amount {
+                color: #f6931f;
+                font-weight: bold;
+                background: transparent;
+                border: 0;
+            }
+        </style>
+
+        <!-- Google Map API -->
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/vendor/jquery/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/bootstrap/bootstrap.min.js"></script>
+
+        <!-- Forms Javascript -->
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-tcm-month.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-ui-timepicker.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery-ui-touch-punch.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.spectrum.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.stepper.min.js"></script>
+
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/advanced/steps/jquery.steps.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/admin-tools/admin-forms/js/additional-methods.min.js"></script>
+
+
+        <!-- Theme Javascript -->
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/utility/utility.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/main.js"></script>
+        <script type="text/javascript" src="<?php echo $this->basePath() ?>/assets/js/demo.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+
+                "use strict";
+
+                // Init Theme Core    
+                Core.init();
+
+                // Init Theme Core    
+                //Demo.init();
+
+                /* @date time picker
+                 ------------------------------------------------------------------ */
+                $('#datetimepicker1').datetimepicker({
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    beforeShow: function (input, inst) {
+                        var newclass = 'admin-form';
+                        var themeClass = $(this).parents('.admin-form').attr('class');
+                        var smartpikr = inst.dpDiv.parent();
+                        if (!smartpikr.hasClass(themeClass)) {
+                            inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+                        }
+                    }
+                });
+
+                $('.inline-dtp').datetimepicker({
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                });
+
+
+                /* @date picker
+                 ------------------------------------------------------------------ */
+                $("#datepicker1").datepicker({
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    showButtonPanel: false
+                });
+
+                $('.inline-dp').datepicker({
+                    numberOfMonths: 1,
+                    prevText: '<i class="fa fa-chevron-left"></i>',
+                    nextText: '<i class="fa fa-chevron-right"></i>',
+                    showButtonPanel: false
+                });
+
+                $.validator.addMethod("alnum", function(value, element) {
+                 return this.optional(element) || /([a-zA-Z0-9])\w+/i.test(value);
+                }, "Username must contain only letters, numbers, or dashes.");
+
+                $.validator.addMethod("alfa", function(value, element) {
+                 return this.optional(element) || /^[a-z]+$/i.test(value);
+                }, "Username must contain only letters, numbers, or dashes.");
+
+                $("#admin-form").validate({
+                    /* @validation states + elements 
+                     ------------------------------------------- */
+
+                    errorClass: "state-error",
+                    validClass: "state-success",
+                    errorElement: "em",
+                    /* @validation rules 
+                     ------------------------------------------ */
+
+                    rules: {
+                        seudonimo: {
+                            required: true,
+                            alnum: true
+                        },
+                        nombre: {
+                            required: true,
+                            alfa: true
+                        },
+                        apellido: {
+                            required: true,
+                            alfa: true
+                        },
+                        id: {
+                            required: true,
+                            digits: true,
+                            minlength: 7
+                        },
+                        fijo: {
+                            required: true,
+                            digits: true, 
+                            maxlength: 11                           
+                        },
+                        celular: {
+                            required: true,
+                            digits: true,
+                            maxlength: 11
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        emailconf: {
+                            required: true,
+                            equalTo: email,
+                            email: true
+                        },
+                        producto: {
+                            required: true,
+                            alnum: true
+                        },
+                        modelo: {
+                            required: true,
+                            alfa: true
+                        },
+                        detalle: {
+                            required: true,
+                            alfa: true
+                        },
+                        metodo: {
+                            required: true
+                        },
+                        receptor: {
+                            required: true
+                        },
+                        emisor: {
+                            required: true                            
+                        },
+                        transferencia: {
+                            alnum: true,
+                            required: true
+                        },
+                        file2: {
+                            required: true,
+                            extension: 'jpg|png|gif|jpeg|doc|docx|pdf|xls|rar|zip'
+                        },
+                        datepicker1: {
+                            required: true
+                        },
+                        monto: {
+                            required: true,
+                            digits: true
+                        },
+                        tipo: {
+                            required: true
+                        },
+                        encomienda: {
+                            required: true
+                        },
+                        envio: {
+                            required: true
+                        },
+                        direccion: {
+                            required: true,
+                            alfa: true
+                        },
+                        ciudad: {
+                            required: true,
+                        },
+                        estado: {
+                            required: true
+                        }
+                    },
+                    /* @validation error messages 
+                     ---------------------------------------------- */
+
+                    messages: {
+                        seudonimo: {
+                            required: 'El Campo es requerido',
+                            alnum: 'Introdujo un seudonimo no valido'
+                        },
+                        nombre: {
+                            required: 'El Campo es requerido',
+                            alfa: 'Introdujo un nombre no valido'
+                        },
+                        apellido: {
+                            required: 'El Campo es requerido',
+                            alfa: 'Introdujo un apellido no valido'
+                        },
+                        id: {
+                            required: 'El Campo es requerido',
+                            digits: 'La cedula o rif debe contener solo numeros',
+                            minlength: 'Debe contener un minimo de 8 digitos'
+                        },
+                        fijo: {
+                            required: 'El Campo es requerido',
+                            digits: 'El numero fijo debe contener solo numeros',
+                            maxlength: 'No debe tener mas de 11 digitos'
+                        },
+                        celular: {
+                            required: 'El Campo es requerido',
+                            digits: 'El numero celular debe contener solo numeros',
+                            maxlength: 'No debe tener mas de 11 digitos'
+                        },
+                        email: {
+                            required: 'El Campo es requerido',
+                            email: 'Ingresa un email valido'
+                        },
+                        emailconf: {
+                            required: 'El Campo es requerido',
+                            equalTo: 'El Campo no es igual',
+                            email: 'Ingresa un email valido'
+                        },
+                        producto: {
+                            required: 'El Campo es requerido',
+                            alnum: 'Introdujo un producto no valido'
+                        },
+                        modelo: {
+                            required: 'El Campo es requerido',
+                            alfa: 'Introdujo un modelo no valido'
+                        },
+                        detalle: {
+                            required: 'El Campo es requerido',
+                            alfa: 'Introdujo un modelo no valido'
+                        },
+                        metodo: {
+                            required: 'El Campo es requerido'
+                        },
+                        receptor:{
+                            required: 'El Campo es requerido'
+                        },
+                        emisor: {
+                            required: 'El Campo es requerido'
+                        },
+                        transferencia: {
+                            alnum: 'El Campo debe contener puros numeros',
+                            required: 'El campo es requerido'
+                        },
+                        file2: {
+                            required: 'El Campo es requerido',
+                            extension: 'Extension no valida'
+                        },
+                        datepicker: {
+                            required: 'El Campo es requerido'
+                        },
+                        monto: {
+                            required: 'El Campo es requerido',
+                            digits: 'Introdujo un monto no valido'
+                        },
+                        tipo: {
+                            required: 'El Campo es requerido'
+                        },
+                        encomienda: {
+                            required: 'El Campo es requerido'
+                        },
+                        envio: {
+                            required: 'El Campo es requerido'
+                        },
+                        direccion: {
+                            required: 'El Campo es requerido',
+                            alfa: 'Introdujo una  direccion no valida'
+                        },
+                        ciudad: {
+                            required: 'El Campo es requerido',
+                        },
+                        estado: {
+                            required: 'El Campo es requerido'
+                        }
+                    },
+                    /* @validation highlighting + error placement  
+                     ---------------------------------------------------- */
+
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).closest('.field').addClass(errorClass).removeClass(validClass);
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).closest('.field').removeClass(errorClass).addClass(validClass);
+                    },
+                    errorPlacement: function (error, element) {
+                        if (element.is(":radio") || element.is(":checkbox")) {
+                            element.closest('.option-group').after(error);
+                        } else {
+                            error.insertAfter(element.parent());
+                        }
+                    }
+
+                });
+            });
+        </script>
+        <!-- END: PAGE SCRIPTS -->
+
+    </body>
+
+</html>
