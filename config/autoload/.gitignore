@@ -1,3 +1,4 @@
 local.php
 *.local.php
 !/databaseopen.local.php
+!/mail.config.local.php
