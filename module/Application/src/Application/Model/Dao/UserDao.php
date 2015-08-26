@@ -4,92 +4,130 @@ namespace Application\Model\Dao;
 
 use Zend\Db\Sql\Sql;
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Model\Entity\Registro;
+
+use Application\Model\Entity\User;
+use Application\Model\Entity\BankTransmitter;
+use Application\Model\Entity\State;
+use Application\Model\Entity\PaymentMethod;
+use Application\Model\Entity\ShippingMethod;
+use Application\Model\Entity\ShippingCourierService;
+
+
+use Application\Model\Dao\BankTransmitterDao;
+use Application\Model\Dao\StateDao;
+use Application\Model\Dao\PaymentMethodDao;
+use Application\Model\Dao\ShippingMethodDao;
+use Application\Model\Dao\ShippingCourierServiceDao;
 
 /**
  * 
  */
 class UserDao {
 
-   protected $tableGateway;
+    protected $tableGateway;
+    public $user_id;
 
-    public function __construct(TableGateway $tableGateway)
+    public function __construct(TableGateway $tablegateway) 
     {
-        $this->tableGateway = $tableGateway;
-    }
-	
-    public function fetchAll()
-    {
-        $resultSet = $this->tableGateway->select();
-        return $resultSet;
+
+        $this->tableGateway = $tablegateway;
     }
 
-    public function getUser($usr_id)
+    public function saveUser($data) 
     {
-        $usr_id  = (int) $usr_id;
-        $rowset = $this->tableGateway->select(array('usr_id' => $usr_id));
-        $row = $rowset->current();
-        if (!$row) {
-            throw new \Exception("Could not find row $id");
-        }
-        return $row;
+
+        
+        return $this->tableGateway->insert($data);
     }
 
-	public function getUserByToken($token)
+    public function guardarUser($data) 
     {
-        $rowset = $this->tableGateway->select(array('usr_registration_token' => $token));
-        $row = $rowset->current();
-        if (!$row) {
-            throw new \Exception("Could not find row $token");
-        }
-        return $row;
-    }
+        $idData =  $data['user_id'];
 
-    public function getUserByEmail($usr_email)
-    {
-        $rowset = $this->tableGateway->select(array('usr_email' => $usr_email));
-        $row = $rowset->current();
-        if (!$row) {
-            throw new \Exception("Could not find row $usr_email");
-        }
-        return $row;
-    }
+        $id = (int) $idData;
 
-    public function changePassword($usr_id, $password)
-    {
-		$data['password'] = $password;
-		$this->tableGateway->update($data, array('usr_id' => (int)$usr_id));
-    }
-	
-    public function saveUser(User $user)
-    {
-		// for Zend\Db\TableGateway\TableGateway we need the data in array not object
-        $data = array(
-            'usr_name' 				=> $user->usr_name,
-            'usr_password'  		=> $user->usr_password,
-            'usr_email'  			=> $user->usr_email,
-            'usr_password_salt' 	=> $user->usr_password_salt,
-            'usr_registration_date' => $user->usr_registration_date,
-            'usr_registration_token'=> $user->usr_registration_token,
-        );
-		// If there is a method getArrayCopy() defined in Auth you can simply call it.
-		// $data = $user->getArrayCopy();
-
-        $usr_id = (int)$user->usr_id;
-        if ($usr_id == 0) {
+        if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if ($this->getUser($usr_id)) {
-                $this->tableGateway->update($data, array('usr_id' => $usr_id));
+            if ($this->obtenerPorId($id)) {
+                return $this->tableGateway->update($data, array('user_id' => $id));
+            } else {
+                throw new \Exception('El Formulario no Existe');
+            }
+        }
+    }
+
+    public function obtenerPorId($id) 
+    {
+        $user_id = (int) $id;
+        $rowset = $this->tableGateway->select(array('user_id' => $user_id));
+        $row = $rowset->current();
+        if (!$row) {
+            throw new \Exception("El Usuario no Existe");
+        }
+        return $row;
+    }
+
+    public function getAll() 
+    {
+        $query = $this->tableGateway->getSql()->select();
+        $query->order("user_id DESC");
+        //echo $query->getSqlString();die;
+
+        $resultSet = $this->tableGateway->selectWith($query);
+        //var_dump($resultSet);die;
+
+        return $resultSet;
+    }
+    
+    public function saveUser(User $data)
+    {
+        
+        
+
+        if ($productId == 0) {
+            // insert Product Table
+            $sProduct = $this->tableGateway->insert($data_product);
+
+            if ($sProduct) {
+
+                $productId = $this->tableGateway->getLastInsertValue();
+                // Insert Product Description
+                $sDescription = $this->saveProductDescription($productId, $data_product_description);
+                // Insert Images
+                $sImage = $this->saveProductImage($productId, $data_product_image);
+                // insert Url Alias
+                $sUrlAlias = $this->saveUrlAlias($productId, $data_product_urlAlias);
+                // insert Categories
+                $sUrlAlias = $this->saveProductCategories($productId, $data_product_categories);
+
+                return $productId;
+            } else {
+                throw new \Exception('Form id does not exist');
+            }
+        } else {
+
+            if ($this->getById($productId)) {
+
+                $data_product['date_modified'] = date("Y-m-d H:i:s");
+                //print_r($data_product);die;
+                $this->tableGateway->update($data_product, array(
+                    'product_id' => $productId,
+                ));
+                // update Product Description
+                $sDescription = $this->saveProductDescription($productId, $data_product_description, 1);
+                // update Images ( AJAX )
+                //$sImage = $this->saveProductImage($productId, $data_product_image);
+                // update Url Alias
+                $sUrlAlias = $this->saveUrlAlias($productId, $data_product_urlAlias, 1);
+                // update Categories
+                $sUrlAlias = $this->saveProductCategories($productId, $data_product_categories, 1);
+
+                return $productId;
             } else {
                 throw new \Exception('Form id does not exist');
             }
         }
     }
-	
-    public function deleteUser($id)
-    {
-        $this->tableGateway->delete(array('usr_id' => $usr_id));
-    }	
 
 }

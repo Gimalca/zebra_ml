@@ -27,37 +27,270 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="exampleModalLabel"><?php echo $registros->getNombre(); ?> <?php echo $registros->getApellido(); ?></h4>
+                                        <h4 class="modal-title" id="exampleModalLabel">Cliente <?php echo $registros->getNombre(); ?> <?php echo $registros->getApellido(); ?></h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="col-md-offset-4 col-md-8"><label for="recipient-name" class="control-label">Pseudonimo:</label> <?php echo $registros->getSeudonimo(); ?> </div>
-                                        <div class="col-md-4"><label for="recipient-name" class="control-label">Nombre:</label>  <?php echo $registros->getNombre(); ?></div><div class="col-md-4"><label for="recipient-name" class="control-label">Apellido:</label>  <?php echo $registros->getApellido(); ?></div><div class="col-md-4"><label for="recipient-name" class="control-label">Cedula o Rif:</label>  <?php echo $registros->getTipoid(); ?><?php echo $registros->getId(); ?></div>
-                                        <label for="recipient-name" class="control-label col-md-4">Email:</label> <?php echo $registros->getEmail(); ?>
-                                        
-                                        <?php echo $registros->getEmail(); ?>
-                                        <?php echo $registros->getSeudonimo(); ?>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        <div class="panel-body">
+
+                                            <div class="panel-body p25 bg-light">
+                                                <div class="col-md-offset-4 col-md-4" style="text-align: center;">
+                                                    <span >Datos del Cliente</span>
+                                                </div><br>
+                                                <!-- .section-divider -->
+
+                                                <div class="section row">
+                                                    <div class="col-md-4">
+                                                        <label for="seudonimo" class="field prepend-icon">   
+                                                            <b>Seudonimo:</b><br>
+                                                            <label for="seudonimo" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>                                                    
+                                                            <?php echo $registros->getSeudonimo(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+
+                                                    <div class="col-md-4">
+                                                        <label for="nombre" class="field prepend-icon">
+                                                            <b>Nombre:</b><br>
+                                                            <label for="nombre" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getNombre(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="apellido" class="field prepend-icon">
+                                                            <b>Apellido:</b><br>
+                                                            <label for="apellido" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getApellido(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+                                                </div>
+                                                <!-- end .section row section -->
+
+                                                <div class="section row">
+                                                    <div class="col-md-4">
+                                                        <label for="id" class="field prepend-icon">
+                                                            <b>Cedula:</b><br>
+                                                            <label for="id" class="field-icon"><i class="glyphicons glyphicons-vcard"></i>
+                                                            </label>
+                                                            <?php echo $registros->getTipoid(); ?>
+                                                            <?php echo $registros->getId(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+
+                                                    <div class="col-md-4">
+                                                        <label for="fijo" class="field prepend-icon">
+                                                            <b>Telefono Fijo:</b><br>
+                                                            <label for="fijo" class="field-icon"><i class="fa fa-phone"></i>
+                                                            </label>
+                                                            <?php echo $registros->getFijo(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="movil" class="field prepend-icon">
+                                                            <b>Telefono Celular:</b><br>
+                                                            <label for="movil" class="field-icon"><i class="fa fa-phone"></i>
+                                                            </label>
+                                                            <?php echo $registros->getCelular(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+                                                </div>
+                                                <!-- end section -->
+
+                                                <div class="section row">
+                                                    <div class="col-md-12">
+                                                        <label for="email" class="field prepend-icon">
+                                                            <b>Email:</b><br>
+                                                            <label for="email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                                            </label>
+                                                            <?php echo $registros->getEmail(); ?>
+                                                        </label>
+                                                    </div>    
+                                                    <!-- end .smart-widget section -->
+                                                </div>
+                                                <!-- end section -->
+
+                                                <div class="col-md-offset-4 col-md-4" style="text-align: center;">
+                                                    <span >Datos del Producto</span>
+                                                </div><br>
+
+                                                <div class="section row">
+                                                    <div class="col-md-4">
+                                                        <b>Nombre del Producto:</b><br>
+                                                        <label for="producto" class="field prepend-icon">
+                                                            <label for="producto" class="field-icon"><i class="glyphicons glyphicons-shopping_bag"></i>
+                                                            </label>
+                                                            <?php echo $registros->getProducto(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+
+                                                    <div class="col-md-4">
+                                                        <b>Cantidad:</b><br>
+                                                        <label for="cantidad" class="field-icon"><i class="glyphicons glyphicons-shopping_bag"></i>
+                                                        </label>
+                                                        <?php echo $registros->getCantidad(); ?>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <label for="modelo" class="field prepend-icon">
+                                                            <b>Modelo:</b><br>
+                                                            <label for="modelo" class="field-icon"><i class="fa fa-tag"></i>
+                                                            </label>
+                                                            <?php echo $registros->getModelo(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <!-- end section -->
+                                                </div>
+                                                <!-- end section -->
+
+                                                <div class="section">
+                                                    <label for="detalle" class="field prepend-icon">
+                                                        <b>Detalle:</b><br>
+                                                        <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getDetalle(); ?>
+                                                    </label>
+                                                    <!-- end .smart-widget section -->
+                                                </div>
+                                                <!-- end section -->
+
+                                                <div class="col-md-offset-4 col-md-4" style="text-align: center;">
+                                                    <span >Datos del Pago</span>
+                                                </div><br>
+
+                                                <div class="section row">
+                                                    <div class="col-md-4">
+                                                        <b>Metodo de Pago:</b><br>
+                                                        <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getMetodo(); ?>
+                                                    </div>
+                                                    <!-- end section -->
+
+                                                    <div class="col-md-4">
+                                                        <b>Banco Receptor:</b><br>
+                                                        <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getReceptor(); ?>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <b>Banco Emisor:</b><br>
+                                                        <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getEmisor(); ?>
+                                                    </div>
+                                                    <!-- end section -->
+                                                </div>
+                                                <!-- end section -->
+
+                                                <div class="section row">
+                                                    <div class="col-md-6">
+                                                        <label for="numero" class="field prepend-icon">
+                                                            <b>Numero de Transferencia:</b><br>
+                                                            <label for="transferencia" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getTransferencia(); ?>
+                                                        </label>                                            
+                                                    </div>
+                                                </div>
+
+                                                <div class="section row">
+                                                    <div class="col-md-6">                                                        
+                                                        <label for="datepicker1" class="field prepend-icon">
+                                                            <b>Fecha de Emision:</b><br>
+                                                            <label class="field-icon"><i class="fa fa-calendar-o"></i>
+                                                            </label>
+                                                            <?php echo $registros->getDatepicker1(); ?>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="monto" class="field prepend-icon">
+                                                            <b>Monto pagado:</b><br>
+                                                            <label for="monto" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getMonto(); ?>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-offset-4 col-md-4" style="text-align: center;">
+                                                    <span >Datos del envío</span>
+                                                </div><br>
+
+                                                <div class="section row">
+                                                    <div class="col-md-6">
+                                                        <b>Tipo de entrega:</b><br>
+                                                            <label for="monto" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getTipo(); ?>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>Servicio de Encomienda:</b><br>
+                                                            <label for="monto" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getEncomienda(); ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="section">
+                                                    <label for="direccion" class="field prepend-icon">
+                                                        <b>Direccion:</b><br>
+                                                        <label for="direccion" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getDireccion(); ?>
+                                                    </label>
+                                                </div>
+
+                                                <div class="section row">
+                                                    <div class="col-md-4">
+                                                        <b>Ciudad:</b><br>
+                                                        <label for="direccion" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getCiudad(); ?>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <b>Estado:</b><br>
+                                                        <label for="direccion" class="field-icon"><i class="fa fa-user"></i>
+                                                        </label>
+                                                        <?php echo $registros->getEstado(); ?>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="observaciones" class="field prepend-icon">
+                                                            <b>Observaciones:</b><br>
+                                                            <label for="observaciones" class="field-icon"><i class="fa fa-user"></i>
+                                                            </label>
+                                                            <?php echo $registros->getObservaciones(); ?>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <tr>
-                            <td class=""><?php echo $registros->getNombre(); ?></td>
-                            <td class=""><?php echo $registros->getEmail(); ?></td>
-                            <td class=""><?php echo $registros->getDatepicker1(); ?></td>
-                            <td class=""><?php echo $registros->getProducto(); ?></td>
-                            <td class=""><?php echo $registros->getMonto(); ?></td>
-                            <td class="">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"  data-whatever="<?php echo $registros->getRegistro_id() ?>">Large modal</button>
+                            <tr>
+                                <td class=""><?php echo $registros->getNombre(); ?></td>
+                                <td class=""><?php echo $registros->getEmail(); ?></td>
+                                <td class=""><?php echo $registros->getDatepicker1(); ?></td>
+                                <td class=""><?php echo $registros->getProducto(); ?></td>
+                                <td class=""><?php echo $registros->getMonto(); ?></td>
+                                <td class="">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"  data-whatever="<?php echo $registros->getRegistro_id() ?>">Detalle</button>
 
-                                <a href="<?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'editar', 'id' => $registros->getRegistro_id())) ?>" >Editar <?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'editar', 'id' => $registros->getRegistro_id())) ?></a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
+                                    <a href="<?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'editar', 'id' => $registros->getRegistro_id())) ?>" ><button type="button" class="btn btn-primary">Editar </button></a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
                 </table>
-
             </div>
         </div>
 

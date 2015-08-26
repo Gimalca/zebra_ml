@@ -13,6 +13,12 @@ class ConfirmarValidator extends InputFilter {
             'notAlnum' => "El valor no es alfanumerico"
         )
     );
+    protected $opcionesAlnumD = array(
+        'messages' => array(
+            'notAlnum' => "El valor no es alfanumerico"
+        )
+    );
+
 
     public function __construct() {
         $this->add(
@@ -80,12 +86,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'id',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -100,12 +100,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'fijo',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -120,12 +114,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'celular',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -228,12 +216,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'metodo',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -248,12 +230,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'receptor',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -268,12 +244,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'emisor',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -288,32 +258,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'transferencia',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
-                    'filters' => array(
-                        array(
-                            'name' => 'StripTags'
-                        ),
-                        array(
-                            'name' => 'StringTrim'
-                        ),
-                    )
-                )
-        );
-        $this->add(
-                array(
-                    'name' => 'transferencia',
-                    'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -327,7 +271,7 @@ class ConfirmarValidator extends InputFilter {
         $this->add(
                 array(
                     'name' => 'datepicker1',
-                    'require' => true,
+                   // 'require' => true,
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -342,12 +286,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'monto',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
                     'filters' => array(
                         array(
                             'name' => 'StripTags'
@@ -362,60 +300,18 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'tipo',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
-                    'filters' => array(
-                        array(
-                            'name' => 'StripTags'
-                        ),
-                        array(
-                            'name' => 'StringTrim'
-                        ),
-                    )
                 )
         );
         $this->add(
                 array(
                     'name' => 'encomienda',
-                    'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
-                    'filters' => array(
-                        array(
-                            'name' => 'StripTags'
-                        ),
-                        array(
-                            'name' => 'StringTrim'
-                        ),
-                    )
+                    'continue_if_empty' => true,
                 )
         );
         $this->add(
                 array(
                     'name' => 'envio',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
-                    'filters' => array(
-                        array(
-                            'name' => 'StripTags'
-                        ),
-                        array(
-                            'name' => 'StringTrim'
-                        ),
-                    )
                 )
         );
         $this->add(
@@ -425,7 +321,7 @@ class ConfirmarValidator extends InputFilter {
                     'validators' => array(
                         array(
                             'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
+                            'options' => $this->opcionesAlnumD
                         )
                     ),
                     'filters' => array(
@@ -462,20 +358,6 @@ class ConfirmarValidator extends InputFilter {
                 array(
                     'name' => 'estado',
                     'require' => true,
-                    'validators' => array(
-                        array(
-                            'name' => 'Alnum',
-                            'options' => $this->opcionesAlnum
-                        )
-                    ),
-                    'filters' => array(
-                        array(
-                            'name' => 'StripTags'
-                        ),
-                        array(
-                            'name' => 'StringTrim'
-                        ),
-                    )
                 )
         );
 // $productImage = new FileInput('imagen');

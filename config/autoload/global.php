@@ -14,7 +14,7 @@
 return array(
     'db' => array(
         'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=sistema_zebra;host=localhost'
+        'dsn' => 'mysql:dbname=zebra_ml;host=localhost'
     ),
     'service_manager' => array(
         'factories' => array(

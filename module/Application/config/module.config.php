@@ -11,7 +11,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Registro' => 'Application\Controller\RegistroController'
+            'Application\Controller\User' => 'Application\Controller\UserController'
         ),
     ),
     'router' => array(

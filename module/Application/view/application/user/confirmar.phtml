@@ -58,8 +58,8 @@
                         <div class="row mb15 table-layout">
 
                             <div class="col-xs-4">
-                                <a href="dashboard.html" title="Return to Dashboard">
-                                    <?php echo $this->title ?><img src="<?php echo $this->basePath() ?>/assets/img/logos/logo_white.png" title="AdminDesigns Logo" class="img-responsive w250">
+                                <a href="dashboard.html" title="Return to Dashboard" style="margin-left:-5px;">
+                                    <?php echo $this->title ?><img src="<?php echo $this->basePath() ?>/assets/img/logos/logo.jpg" title="AdminDesigns Logo" class="img-responsive w550">
                                 </a>
 
                             </div>
@@ -281,12 +281,12 @@
 
                                         <div class="section row">
                                             <div class="col-md-6">
-                                                <label for="datepicker1" class="field prepend-icon">
-                                                    <?php $datepicker1 = $this->form->get('datepicker1') ?>
-                                                    <?php echo $this->formInput($datepicker1) ?>
+                                                <label for="date" class="field prepend-icon">
+                                                    <?php $date = $this->form->get('date') ?>
+                                                    <?php echo $this->formInput($date) ?>
                                                     <label class="field-icon"><i class="fa fa-calendar-o"></i>
                                                     </label>
-                                                    <div class="error"> <?php echo $this->formelementerrors($datepicker1) ?> </div>
+                                                    <div class="error"> <?php echo $this->formelementerrors($date) ?> </div>
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
@@ -305,7 +305,7 @@
                                         </div>
 
                                         <div class="section row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <label class="field select">
                                                     <?php $tipo = $this->form->get('tipo') ?>
                                                     <?php echo $this->formSelect($tipo) ?>
@@ -313,21 +313,13 @@
                                                 </label>
                                                 <div class="error"> <?php echo $this->formelementerrors($tipo) ?> </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <label class="field select">
                                                     <?php $encomienda = $this->form->get('encomienda') ?>
                                                     <?php echo $this->formSelect($encomienda) ?>
                                                     <i class="arrow double"></i>
                                                 </label>
                                                 <div class="error"> <?php echo $this->formelementerrors($encomienda) ?> </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="field select">
-                                                    <?php $envio = $this->form->get('envio') ?>
-                                                    <?php echo $this->formSelect($envio) ?>
-                                                    <i class="arrow double"></i>
-                                                </label>
-                                                <div class="error"> <?php echo $this->formelementerrors($envio) ?> </div>
                                             </div>
                                         </div>
 
@@ -343,10 +335,9 @@
 
                                         <div class="section row">
                                             <div class="col-md-4">
-                                                <label class="field select">
+                                                <label for="direccion" class="field prepend-icon">
                                                     <?php $ciudad = $this->form->get('ciudad') ?>
-                                                    <?php echo $this->formSelect($ciudad) ?>
-                                                    <i class="arrow double"></i>
+                                                    <?php echo $this->formInput($ciudad) ?>
                                                     </label>
                                                     <div class="error"> <?php echo $this->formelementerrors($ciudad) ?> </div>
                                                 </label>
@@ -477,30 +468,15 @@
                 // Init Theme Core    
                 //Demo.init();
 
-                /* @date time picker
-                 ------------------------------------------------------------------ */
-                $('#datetimepicker1').datetimepicker({
-                    prevText: '<i class="fa fa-chevron-left"></i>',
-                    nextText: '<i class="fa fa-chevron-right"></i>',
-                    beforeShow: function (input, inst) {
-                        var newclass = 'admin-form';
-                        var themeClass = $(this).parents('.admin-form').attr('class');
-                        var smartpikr = inst.dpDiv.parent();
-                        if (!smartpikr.hasClass(themeClass)) {
-                            inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
-                        }
-                    }
+                $('#tipo').on('change',function(e){
+                    var tipo = $(this).val();
+                    if (tipo == 3) {
+                        $('#encomienda').removeAttr('disabled');
+                    };
+                    
                 });
 
-                $('.inline-dtp').datetimepicker({
-                    prevText: '<i class="fa fa-chevron-left"></i>',
-                    nextText: '<i class="fa fa-chevron-right"></i>',
-                });
-
-
-                /* @date picker
-                 ------------------------------------------------------------------ */
-                $("#datepicker1").datepicker({
+                $("#date").datepicker({
                     prevText: '<i class="fa fa-chevron-left"></i>',
                     nextText: '<i class="fa fa-chevron-right"></i>',
                     showButtonPanel: false
@@ -594,10 +570,9 @@
                             required: true
                         },
                         file2: {
-                            required: true,
                             extension: 'jpg|png|gif|jpeg|doc|docx|pdf|xls|rar|zip'
                         },
-                        datepicker1: {
+                        date: {
                             required: true
                         },
                         monto: {
@@ -607,15 +582,8 @@
                         tipo: {
                             required: true
                         },
-                        encomienda: {
-                            required: true
-                        },
-                        envio: {
-                            required: true
-                        },
                         direccion: {
-                            required: true,
-                            alfa: true
+                            required: true
                         },
                         ciudad: {
                             required: true,
@@ -690,7 +658,7 @@
                             required: 'El campo es requerido'
                         },
                         file2: {
-                            required: 'El Campo es requerido',
+                            
                             extension: 'Extension no valida'
                         },
                         datepicker: {
@@ -703,15 +671,8 @@
                         tipo: {
                             required: 'El Campo es requerido'
                         },
-                        encomienda: {
-                            required: 'El Campo es requerido'
-                        },
-                        envio: {
-                            required: 'El Campo es requerido'
-                        },
                         direccion: {
-                            required: 'El Campo es requerido',
-                            alfa: 'Introdujo una  direccion no valida'
+                            required: 'El Campo es requerido'
                         },
                         ciudad: {
                             required: 'El Campo es requerido',

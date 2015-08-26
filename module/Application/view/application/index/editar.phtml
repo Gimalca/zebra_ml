@@ -31,332 +31,334 @@
                         echo $this->form()->openTag($form);
                         echo $this->formHidden($form->get('id'));
                         ?>
-                            <input type="text"  value="1" name="verificar">
-                            <div class="panel-body p25 bg-light">
-                                <div class="section-divider mt10 mb40">
-                                    <span>Datos del Cliente</span>
-                                </div>
-                                <!-- .section-divider -->
+                        <?php $idR = $this->form->get('registro_id') ?>
+                        <?php echo $this->formInput($idR) ?>
+                        <input type="hidden"  value="1" name="verificar">
+                        <div class="panel-body p25 bg-light">
+                            <div class="section-divider mt10 mb40">
+                                <span>Datos del Cliente</span>
+                            </div>
+                            <!-- .section-divider -->
 
-                                <div class="section row">
-                                    <div class="col-md-4">
-                                        <label for="seudonimo" class="field prepend-icon">
-                                            <?php $seudonimo = $this->form->get('seudonimo') ?>
-<?php echo $this->formInput($seudonimo) ?>
-                                            <label for="seudonimo" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
+                            <div class="section row">
+                                <div class="col-md-4">
+                                    <label for="seudonimo" class="field prepend-icon">
+                                        <?php $seudonimo = $this->form->get('seudonimo') ?>
+                                        <?php echo $this->formInput($seudonimo) ?>
+                                        <label for="seudonimo" class="field-icon"><i class="fa fa-user" style="top:13px"></i>
                                         </label>
-                                    </div>
-                                    <!-- end section -->
-
-                                    <div class="col-md-4">
-                                        <label for="nombre" class="field prepend-icon">
-                                            <?php $nombre = $this->form->get('nombre') ?>
-<?php echo $this->formInput($nombre) ?>
-                                            <label for="nombre" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($nombre) ?> </div>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="apellido" class="field prepend-icon">
-                                            <?php $apellido = $this->form->get('apellido') ?>
-<?php echo $this->formInput($apellido) ?>
-                                            <label for="apellido" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($apellido) ?> </div>
-                                        </label>
-                                    </div>
-                                    <!-- end section -->
-                                </div>
-                                <!-- end .section row section -->
-
-                                <div class="section row">
-                                    <div class="col-md-1">
-                                        <label class="field select">
-                                            <?php $tipoid = $this->form->get('tipoid') ?>
-<?php echo $this->formSelect($tipoid) ?>
-                                            <i class="arrow double" style="width: 16px;"></i>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="id" class="field prepend-icon">
-                                            <?php $id = $this->form->get('id') ?>
-<?php echo $this->formInput($id) ?>
-                                            <label for="id" class="field-icon"><i class="glyphicons glyphicons-vcard"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($id) ?> </div>
-                                        </label>
-                                    </div>
-                                    <!-- end section -->
-
-                                    <div class="col-md-4">
-                                        <label for="fijo" class="field prepend-icon">
-                                            <?php $fijo = $this->form->get('fijo') ?>
-<?php echo $this->formInput($fijo) ?>
-                                            <label for="fijo" class="field-icon"><i class="fa fa-phone"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($fijo) ?> </div>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="movil" class="field prepend-icon">
-                                            <?php $celular = $this->form->get('celular') ?>
-<?php echo $this->formInput($celular) ?>
-                                            <label for="movil" class="field-icon"><i class="fa fa-phone"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($celular) ?> </div>
-                                        </label>
-                                    </div>
-                                    <!-- end section -->
+                                    </label>
                                 </div>
                                 <!-- end section -->
 
-                                <div class="section row">
-                                    <div class="col-md-6">
-                                        <label for="email" class="field prepend-icon">
-                                            <?php $email = $this->form->get('email') ?>
-<?php echo $this->formInput($email) ?>
-                                            <label for="email" class="field-icon"><i class="fa fa-envelope-o"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($email) ?> </div>
+                                <div class="col-md-4">
+                                    <label for="nombre" class="field prepend-icon">
+                                        <?php $nombre = $this->form->get('nombre') ?>
+                                        <?php echo $this->formInput($nombre) ?>
+                                        <label for="nombre" class="field-icon"><i class="fa fa-user" style="top:13px"></i>
                                         </label>
-                                    </div>                                            
-                                    <div class="col-md-6">
-                                        <label for="email" class="field prepend-icon">
-                                            <?php $emailconf = $this->form->get('emailconf') ?>
-<?php echo $this->formInput($emailconf) ?>
-                                            <label for="email" class="field-icon"><i class="fa fa-envelope-o"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($emailconf) ?> </div>
+                                        <div class="error"> <?php echo $this->formelementerrors($nombre) ?> </div>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="apellido" class="field prepend-icon">
+                                        <?php $apellido = $this->form->get('apellido') ?>
+                                        <?php echo $this->formInput($apellido) ?>
+                                        <label for="apellido" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
                                         </label>
-                                        <!-- end .smart-widget section -->
-                                    </div>
-                                    <!-- end .smart-widget section -->
+                                        <div class="error"> <?php echo $this->formelementerrors($apellido) ?> </div>
+                                    </label>
+                                </div>
+                                <!-- end section -->
+                            </div>
+                            <!-- end .section row section -->
+
+                            <div class="section row">
+                                <div class="col-md-1">
+                                    <label class="field select">
+                                        <?php $tipoid = $this->form->get('tipoid') ?>
+                                        <?php echo $this->formSelect($tipoid) ?>
+                                        <i class="arrow double" style="width: 16px;"></i>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="id" class="field prepend-icon">
+                                        <?php $id = $this->form->get('id') ?>
+                                        <?php echo $this->formInput($id) ?>
+                                        <label for="id" class="field-icon" style="top:13px"><i class="glyphicons glyphicons-vcard"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($id) ?> </div>
+                                    </label>
                                 </div>
                                 <!-- end section -->
 
-                                <div class="section-divider mv40">
-                                    <span>Datos del Producto</span>
+                                <div class="col-md-4">
+                                    <label for="fijo" class="field prepend-icon">
+                                        <?php $fijo = $this->form->get('fijo') ?>
+                                        <?php echo $this->formInput($fijo) ?>
+                                        <label for="fijo" class="field-icon" style="top:13px"><i class="fa fa-phone"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($fijo) ?> </div>
+                                    </label>
                                 </div>
-
-                                <div class="section row">
-                                    <div class="col-md-4">
-                                        <label for="producto" class="field prepend-icon">
-                                            <?php $producto = $this->form->get('producto') ?>
-<?php echo $this->formInput($producto) ?>
-                                            <label for="producto" class="field-icon"><i class="glyphicons glyphicons-shopping_bag"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($producto) ?> </div>
+                                <div class="col-md-4">
+                                    <label for="movil" class="field prepend-icon">
+                                        <?php $celular = $this->form->get('celular') ?>
+                                        <?php echo $this->formInput($celular) ?>
+                                        <label for="movil" class="field-icon" style="top:13px"><i class="fa fa-phone"></i>
                                         </label>
-                                    </div>
-                                    <!-- end section -->
-
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $cantidad = $this->form->get('cantidad') ?>
-<?php echo $this->formInput($cantidad) ?>
-                                        </label>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label for="modelo" class="field prepend-icon">
-                                            <?php $modelo = $this->form->get('modelo') ?>
-<?php echo $this->formInput($modelo) ?>
-                                            <label for="modelo" class="field-icon"><i class="fa fa-tag"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($modelo) ?> </div>
-                                        </label>
-                                    </div>
-                                    <!-- end section -->
+                                        <div class="error"> <?php echo $this->formelementerrors($celular) ?> </div>
+                                    </label>
                                 </div>
                                 <!-- end section -->
+                            </div>
+                            <!-- end section -->
 
-                                <div class="section">
-                                    <label for="detalle" class="field prepend-icon">
-                                        <?php $detalle = $this->form->get('detalle') ?>
-<?php echo $this->formInput($detalle) ?>
-                                        <label for="detalle" class="field-icon"><i class="fa fa-user"></i>
+                            <div class="section row">
+                                <div class="col-md-6">
+                                    <label for="email" class="field prepend-icon">
+                                        <?php $email = $this->form->get('email') ?>
+                                        <?php echo $this->formInput($email) ?>
+                                        <label for="email" class="field-icon" style="top:13px"><i class="fa fa-envelope-o"></i>
                                         </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($detalle) ?> </div>
+                                        <div class="error"> <?php echo $this->formelementerrors($email) ?> </div>
+                                    </label>
+                                </div>                                            
+                                <div class="col-md-6">
+                                    <label for="email" class="field prepend-icon">
+                                        <?php $emailconf = $this->form->get('emailconf') ?>
+                                        <?php echo $this->formInput($emailconf) ?>
+                                        <label for="email" class="field-icon" style="top:13px"><i class="fa fa-envelope-o"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($emailconf) ?> </div>
                                     </label>
                                     <!-- end .smart-widget section -->
                                 </div>
-                                <!-- end section -->
+                                <!-- end .smart-widget section -->
+                            </div>
+                            <!-- end section -->
 
-                                <div class="section-divider mv40">
-                                    <span>Datos del Pago</span>
-                                </div>
+                            <div class="section-divider mv40">
+                                <span>Datos del Producto</span>
+                            </div>
 
-                                <div class="section row">
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $metodo = $this->form->get('metodo') ?>
-<?php echo $this->formSelect($metodo) ?>
-                                            <i class="arrow double"></i>
+                            <div class="section row">
+                                <div class="col-md-4">
+                                    <label for="producto" class="field prepend-icon">
+                                        <?php $producto = $this->form->get('producto') ?>
+                                        <?php echo $this->formInput($producto) ?>
+                                        <label for="producto" class="field-icon" style="top:13px"><i class="glyphicons glyphicons-shopping_bag"></i>
                                         </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($metodo) ?> </div>
-                                    </div>
-                                    <!-- end section -->
-
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $receptor = $this->form->get('receptor') ?>
-<?php echo $this->formSelect($receptor) ?>
-                                            <i class="arrow double"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($receptor) ?> </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $emisor = $this->form->get('emisor') ?>
-<?php echo $this->formSelect($emisor) ?>
-                                            <i class="arrow double"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($emisor) ?> </div>
-                                    </div>
-                                    <!-- end section -->
+                                        <div class="error"> <?php echo $this->formelementerrors($producto) ?> </div>
+                                    </label>
                                 </div>
                                 <!-- end section -->
 
-                                <div class="section row">
-                                    <div class="col-md-6">
-                                        <label for="numero" class="field prepend-icon">
-                                            <?php $transferencia = $this->form->get('transferencia') ?>
-<?php echo $this->formInput($transferencia) ?>
-                                            <label for="transferencia" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($transferencia) ?> </div>
-                                        </label>                                            
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="field prepend-icon file">
-                                            <span class="button btn-primary">Sube una Foto</span>
-                                            <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('imagen').value = this.value;">
-                                            <?php $imagen = $this->form->get('imagen') ?>
-<?php echo $this->formInput($imagen) ?>
-                                            <label class="field-icon"><i class="fa fa-upload"></i>
-                                            </label>                                                
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="section row">
-                                    <div class="col-md-6">
-                                        <label for="datepicker1" class="field prepend-icon">
-                                            <?php $datepicker1 = $this->form->get('datepicker1') ?>
-<?php echo $this->formInput($datepicker1) ?>
-                                            <label class="field-icon"><i class="fa fa-calendar-o"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($datepicker1) ?> </div>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="monto" class="field prepend-icon">
-                                            <?php $monto = $this->form->get('monto') ?>
-<?php echo $this->formInput($monto) ?>
-                                            <label for="monto" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
-                                            <div class="error"> <?php echo $this->formelementerrors($monto) ?> </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="section-divider mv40">
-                                    <span>Datos del Envio</span>
-                                </div>
-
-                                <div class="section row">
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $tipo = $this->form->get('tipo') ?>
-<?php echo $this->formSelect($tipo) ?>
-                                            <i class="arrow double"></i>                                                
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($tipo) ?> </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $encomienda = $this->form->get('encomienda') ?>
-<?php echo $this->formSelect($encomienda) ?>
-                                            <i class="arrow double"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($encomienda) ?> </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $envio = $this->form->get('envio') ?>
-<?php echo $this->formSelect($envio) ?>
-                                            <i class="arrow double"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($envio) ?> </div>
-                                    </div>
-                                </div>
-
-                                <div class="section">
-                                    <label for="direccion" class="field prepend-icon">
-                                        <?php $direccion = $this->form->get('direccion') ?>
-<?php echo $this->formInput($direccion) ?>
-                                        <label for="direccion" class="field-icon"><i class="fa fa-user"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($direccion) ?> </div>
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $cantidad = $this->form->get('cantidad') ?>
+                                        <?php echo $this->formInput($cantidad) ?>
                                     </label>
                                 </div>
 
-                                <div class="section row">
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $ciudad = $this->form->get('ciudad') ?>
-<?php echo $this->formSelect($ciudad) ?>
-                                            <i class="arrow double"></i>
+                                <div class="col-md-4">
+                                    <label for="modelo" class="field prepend-icon">
+                                        <?php $modelo = $this->form->get('modelo') ?>
+                                        <?php echo $this->formInput($modelo) ?>
+                                        <label for="modelo" class="field-icon" style="top:13px"><i class="fa fa-tag"></i>
                                         </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($ciudad) ?> </div>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="field select">
-                                            <?php $estado = $this->form->get('estado') ?>
-<?php echo $this->formSelect($estado) ?>
-                                            <i class="arrow double"></i>
-                                        </label>
-                                        <div class="error"> <?php echo $this->formelementerrors($estado) ?> </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="observaciones" class="field prepend-icon">
-                                            <?php $observaciones = $this->form->get('observaciones') ?>
-<?php echo $this->formInput($observaciones) ?>
-                                            <label for="observaciones" class="field-icon"><i class="fa fa-user"></i>
-                                            </label>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="section-divider mv40">
-                                    <span>Revision de Terminos</span>
-                                </div>
-                                <!-- .section-divider -->
-
-                                <div class="section mb15">
-                                    <label class="option block mt15">
-                                        <?php $terminos = $this->form->get('terminos') ?>
-<?php echo $this->formCheckbox($terminos) ?>
-                                        <span class="checkbox"></span>I agree to the
-                                        <a href="#" class="smart-link"> terms of use. </a>
+                                        <div class="error"> <?php echo $this->formelementerrors($modelo) ?> </div>
                                     </label>
-                                    <div class="error"> <?php echo $this->formelementerrors($terminos) ?> </div>
+                                </div>
+                                <!-- end section -->
+                            </div>
+                            <!-- end section -->
+
+                            <div class="section">
+                                <label for="detalle" class="field prepend-icon">
+                                    <?php $detalle = $this->form->get('detalle') ?>
+                                    <?php echo $this->formInput($detalle) ?>
+                                    <label for="detalle" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($detalle) ?> </div>
+                                </label>
+                                <!-- end .smart-widget section -->
+                            </div>
+                            <!-- end section -->
+
+                            <div class="section-divider mv40">
+                                <span>Datos del Pago</span>
+                            </div>
+
+                            <div class="section row">
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $metodo = $this->form->get('metodo') ?>
+                                        <?php echo $this->formSelect($metodo) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($metodo) ?> </div>
                                 </div>
                                 <!-- end section -->
 
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $receptor = $this->form->get('receptor') ?>
+                                        <?php echo $this->formSelect($receptor) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($receptor) ?> </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $emisor = $this->form->get('emisor') ?>
+                                        <?php echo $this->formSelect($emisor) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($emisor) ?> </div>
+                                </div>
+                                <!-- end section -->
                             </div>
-                            <!-- end .form-body section -->
-                            <div class="panel-footer clearfix col-md-12">
-                                <div class="col-md-2 col-md-offset-10">
-                                    <button type="submit" class="button btn-primary pull-right">Guardar</button>
-                                </div>                                
+                            <!-- end section -->
+
+                            <div class="section row">
+                                <div class="col-md-6">
+                                    <label for="numero" class="field prepend-icon">
+                                        <?php $transferencia = $this->form->get('transferencia') ?>
+                                        <?php echo $this->formInput($transferencia) ?>
+                                        <label for="transferencia" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($transferencia) ?> </div>
+                                    </label>                                            
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="field prepend-icon file">
+                                        <span class="button btn-primary">Sube una Foto</span>
+                                        <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('imagen').value = this.value;">
+                                        <?php $imagen = $this->form->get('imagen') ?>
+                                        <?php echo $this->formInput($imagen) ?>
+                                        <label class="field-icon" style="top:13px"><i class="fa fa-upload"></i>
+                                        </label>                                                
+                                    </label>
+                                </div>
                             </div>
-                            <!-- end .form-footer section -->
-                        </form>
+
+                            <div class="section row">
+                                <div class="col-md-6">
+                                    <label for="datepicker1" class="field prepend-icon">
+                                        <?php $datepicker1 = $this->form->get('datepicker1') ?>
+                                        <?php echo $this->formInput($datepicker1) ?>
+                                        <label class="field-icon" style="top:13px"><i class="fa fa-calendar-o"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($datepicker1) ?> </div>
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="monto" class="field prepend-icon">
+                                        <?php $monto = $this->form->get('monto') ?>
+                                        <?php echo $this->formInput($monto) ?>
+                                        <label for="monto" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
+                                        </label>
+                                        <div class="error"> <?php echo $this->formelementerrors($monto) ?> </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="section-divider mv40">
+                                <span>Datos del Envio</span>
+                            </div>
+
+                            <div class="section row">
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $tipo = $this->form->get('tipo') ?>
+                                        <?php echo $this->formSelect($tipo) ?>
+                                        <i class="arrow double"></i>                                                
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($tipo) ?> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $encomienda = $this->form->get('encomienda') ?>
+                                        <?php echo $this->formSelect($encomienda) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($encomienda) ?> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $envio = $this->form->get('envio') ?>
+                                        <?php echo $this->formSelect($envio) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($envio) ?> </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <label for="direccion" class="field prepend-icon">
+                                    <?php $direccion = $this->form->get('direccion') ?>
+                                    <?php echo $this->formInput($direccion) ?>
+                                    <label for="direccion" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($direccion) ?> </div>
+                                </label>
+                            </div>
+
+                            <div class="section row">
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $ciudad = $this->form->get('ciudad') ?>
+                                        <?php echo $this->formSelect($ciudad) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($ciudad) ?> </div>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="field select">
+                                        <?php $estado = $this->form->get('estado') ?>
+                                        <?php echo $this->formSelect($estado) ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                    <div class="error"> <?php echo $this->formelementerrors($estado) ?> </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="observaciones" class="field prepend-icon">
+                                        <?php $observaciones = $this->form->get('observaciones') ?>
+                                        <?php echo $this->formInput($observaciones) ?>
+                                        <label for="observaciones" class="field-icon" style="top:13px"><i class="fa fa-user"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="section-divider mv40">
+                                <span>Revision de Terminos</span>
+                            </div>
+                            <!-- .section-divider -->
+
+                            <div class="section mb15">
+                                <label class="option block mt15">
+                                    <?php $terminos = $this->form->get('terminos') ?>
+                                    <?php echo $this->formCheckbox($terminos) ?>
+                                    <span class="checkbox"></span>I agree to the
+                                    <a href="#" class="smart-link"> terms of use. </a>
+                                </label>
+                                <div class="error"> <?php echo $this->formelementerrors($terminos) ?> </div>
+                            </div>
+                            <!-- end section -->
+
+                        </div>
+                        <!-- end .form-body section -->
+                        <div class="panel-footer clearfix col-md-12">
+                            <div class="col-md-2 col-md-offset-10">
+                                <button type="submit" class="button btn-primary pull-right">Guardar</button>
+                            </div>                                
+                        </div>
+                        <!-- end .form-footer section -->
+                        <?php echo $this->form()->closeTag() ?>
                     </div>
                 </div>
             </div>

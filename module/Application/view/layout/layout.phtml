@@ -1,6 +1,4 @@
-/* global Core */
 
-/* global Core */
 
 <?php
 $user = new \Zend\Authentication\AuthenticationService();
@@ -67,7 +65,7 @@ if ($user->hasIdentity()) {
                             </a>
                             <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
                                 <li class="br-t of-h">
-                                    
+
                                     <a href="<?php echo $this->url('application/default', array('controller' => 'index', 'action' => 'logout')); ?>" class="fw600 p12 animated animated-short fadeInDown">
                                         <span class="fa fa-power-off pr5"></span> Cerrar sesión </a>
                                 </li>
@@ -102,7 +100,7 @@ if ($user->hasIdentity()) {
                             <li class="sidebar-label pt15">Acciones</li>
                             <li>
                             </li><li>
-                                <a href="<?php echo $this->basePath() ?>/application/index/crear"><span class="glyphicons glyphicons-book"></span>Registrar Usuario</a>
+                                <a href="<?php echo $this->basePath() ?>/application/index/crear"><span class="glyphicons glyphicons-book"></span>Registrar Venta</a>
                             </li>
                             <li>
                                 <a href="<?php echo $this->basePath() ?>/application/registro/confirmar"><span class="glyphicons glyphicons-book"></span>Formulario de Usuario</a>
@@ -114,52 +112,8 @@ if ($user->hasIdentity()) {
                         </ul></div>
                 </aside>
 
-                <?php echo $this->basePath() ?>
-
                 <!-- Start: Content-Wrapper -->
                 <section id="content_wrapper">
-
-                    <!-- Start: Topbar-Dropdown -->
-                    <div id="topbar-dropmenu">
-                        <div class="topbar-menu row">
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-success">
-                                    <span class="metro-icon glyphicons glyphicons-inbox"></span>
-                                    <p class="metro-title">Messages</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-info">
-                                    <span class="metro-icon glyphicons glyphicons-parents"></span>
-                                    <p class="metro-title">Users</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-alert">
-                                    <span class="metro-icon glyphicons glyphicons-headset"></span>
-                                    <p class="metro-title">Support</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-primary">
-                                    <span class="metro-icon glyphicons glyphicons-cogwheels"></span>
-                                    <p class="metro-title">Settings</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-warning">
-                                    <span class="metro-icon glyphicons glyphicons-facetime_video"></span>
-                                    <p class="metro-title">Videos</p>
-                                </a>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="metro-tile bg-system">
-                                    <span class="metro-icon glyphicons glyphicons-picture"></span>
-                                    <p class="metro-title">Pictures</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                     <?php echo $this->content; ?>
 

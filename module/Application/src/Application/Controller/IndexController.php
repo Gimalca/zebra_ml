@@ -16,15 +16,16 @@ use Zend\Authentication\Result;
 use Zend\Authentication\Storage\Session as SessionStorage;
 use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\Authentication\Adapter\DbTable as IndexAdapter;
-use Application\Model\Entity\User;
 use Application\Form\Login;
 use Application\Form\Validator\LoginValidator;
 use Application\Form\Crear;
 use Application\Form\Validator\CrearValidator;
-use Application\Model\Entity\Registro;
-use Application\Model\Dao\RegistroDao;
+use Application\Model\Entity\User;
+use Application\Model\Dao\userDao;
 use Application\Model\Entity\Admin;
 use Application\Model\Dao\AdminDao;
+use Application\Model\Entity\AdminLogin;
+use Application\Model\Dao\AdminLoginDao;
 use Zend\I18n\Validator\Alnum;
 use Zend\Mail;
 use Zend\Mail\Message;
@@ -35,8 +36,11 @@ use Zend\Authentication\AuthenticationService;
 
 class IndexController extends AbstractActionController {
 
-    private $registroDao;
-    
+    private $userDao;
+    private $bankTransmitterDao;
+    private $sateDao;
+
+
     public function indexAction() {
         return new ViewModel();
     }
@@ -50,12 +54,12 @@ class IndexController extends AbstractActionController {
             $form = new Login();
             $form->get('submit')->setValue('Login');
             $messages = null;
-
             $request = $this->getRequest();
             if ($request->isPost()) {
                 $loginFilters = new LoginValidator();
                 $form->setInputFilter($loginFilters->getInputFilter());
                 $form->setData($request->getPost());
+
                 if ($form->isValid()) {
                     $data = $form->getData();
                     $sm = $this->getServiceLocator();
@@ -63,28 +67,30 @@ class IndexController extends AbstractActionController {
 
                     $config = $this->getServiceLocator()->get('Config');
 
-                    $indexAdapter = new IndexAdapter($dbAdapter, 'users', // there is a method setTableName to do the same
+                    $indexAdapter = new IndexAdapter($dbAdapter, 
+                            'zml_admin', // there is a method setTableName to do the same
                             'usr_name', // there is a method setIdentityColumn to do the same
                             'usr_password' // there is a method setCredentialColumn to do the same
                     );
+
                     $indexAdapter
                             ->setIdentity($data['usr_name'])
                             ->setCredential($data['usr_password'])
                     ;
 
-                    $auth = new AuthenticationService();
+                    $auth = new AuthenticationService();                    
                     // or prepare in the globa.config.php and get it from there. Better to be in a module, so we can replace in another module.
                     //$auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
                     // $sm->setService('Zend\Authentication\AuthenticationService', $auth); // You can set the service here but will be loaded only if this action called.
+                    
                     $result = $auth->authenticate($indexAdapter);
-
                     switch ($result->getCode()) {
                         case Result::FAILURE_IDENTITY_NOT_FOUND:
-                            // do stuff for nonexistent identity
+                            echo "prueba";die;
                             break;
 
                         case Result::FAILURE_CREDENTIAL_INVALID:
-                            // do stuff for invalid credential
+                            echo "prueba";die;
                             break;
 
                         case Result::SUCCESS:
@@ -103,7 +109,7 @@ class IndexController extends AbstractActionController {
                             break;
 
                         default:
-                            // do stuff for other failure
+                            echo "prueba";die;
                             break;
                     }
                     foreach ($result->getMessages() as $message) {
@@ -138,8 +144,8 @@ class IndexController extends AbstractActionController {
         $userLogin = new AuthenticationService();
         if ($userLogin->hasIdentity()) {
             $identity = $userLogin->getIdentity();
-            $registroDao = $this->getServicesDao('RegistroDao');
-            $view['registros'] = $registroDao->getAll();
+            $userDao = $this->getServicesDao('userDao');
+            $view['Users'] = $userDao->getAll();
 
             return new ViewModel($view);
         } else {
@@ -196,13 +202,13 @@ class IndexController extends AbstractActionController {
 
     public function editarAction() {
 
-        $registro_id = (int) $this->params()->fromRoute('id', 0);
-        if (!$registro_id) {
-            return $this->redirect()->toRoute('listar');
+        $user_id = (int) $this->params()->fromRoute('id', 0);
+        if (!$user_id) {
+            return $this->redirect()->toRoute('application/default', array('controller' => 'index', 'action' => 'listar'));
         }
 
-        $form = new \Application\Form\Confirmar("registro");
-        $usuario = $this->getRegistroDao()->obtenerPorId($registro_id);
+        $form = new \Application\Form\Confirmar("User");
+        $usuario = $this->getUserDao()->obtenerPorId($user_id);
 //
         $form->bind($usuario);
 
@@ -210,33 +216,7 @@ class IndexController extends AbstractActionController {
         $modelView->setTemplate('application/index/editar');
         return $modelView;
     }
-    
-        public function guardarAction() {
-        if (!$this->request->isPost()) {
-            return $this->redirect()->toRoute('application/default', array('controller' => 'index'));
-        }
 
-        $form = new ProductoForm("producto");
-
-        $form->setInputFilter(new ProductoValidator());
-        // Obtenemos los datos desde el Formulario con POST data:
-        $data = $this->request->getPost();
-
-        $form->setData($data);
-
-        // Validando el form
-        if (!$form->isValid()) {
-            $modelView = new ViewModel(array('title' => 'Validando Producto','form' => $form));
-            $modelView->setTemplate('application/registro/confirmar');
-            return $modelView;
-        }
-
-        $producto = new Producto();
-        $producto->exchangeArray($form->getData());
-
-        $this->getProductoDao()->guardar($producto);
-        return $this->redirect()->toRoute('catalogo');
-    }
 
     public function sendConfirmationEmail($adminEntity) {
         // $view = $this->getServiceLocator()->get('View');
@@ -263,12 +243,14 @@ class IndexController extends AbstractActionController {
         return $tableGateway;
     }
 
-    public function getRegistroDao() {
-        if (!$this->registroDao) {
+    public function getUserDao() {
+        if (!$this->userDao) {
             $sm = $this->getServiceLocator();
-            $this->registroDao = $sm->get('RegistroDao');
+            $this->userDao = $sm->get('userDao');
         }
-        return $this->registroDao;
+        return $this->userDao;
     }
+
+    
 
 }

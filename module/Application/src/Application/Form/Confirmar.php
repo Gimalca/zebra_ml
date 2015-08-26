@@ -10,10 +10,17 @@ class Confirmar extends Form {
     public function __construct($name = NULL) {
         parent::__construct($name);
 
-        $this->setAttribute('action', 'registro/confirmar');
+        $this->setAttribute('action', '/application/user/confirmar');
         $this->setAttribute('method', 'post');
 
 //      Datos del Cliente
+        $this->add(array(
+            'name' => 'user_id',
+            'attributes' => array(
+                'type' => 'hidden',
+                'id' => 'user_id',
+            ),
+        ));
 
         $this->add(array(
             'name' => 'seudonimo',
@@ -49,11 +56,12 @@ class Confirmar extends Form {
             'name' => 'tipoid',
             'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
-                'id' => 'productStockStatus',
+                'id' => 'tipoid',
                 'class' => 'form-control gui-input',
                 'style' => 'padding: 5px;'
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'value_options' => array(
                     '1' => 'V',
                     '2' => 'E',
@@ -136,21 +144,21 @@ class Confirmar extends Form {
                 'value' => '1',
             ),
         ));
+
         $this->add(array(
             'name' => 'imagen',
             'attributes' => array(
                 'type' => 'text',
                 'id' => 'imagen',
-                'require' => 'true',
                 'placeholder' => 'Seleccione un Archivo',
                 'class' => 'gui-input',
             ),
         ));
         $this->add(array(
-            'name' => 'datepicker1',
+            'name' => 'date',
             'attributes' => array(
                 'type' => 'text',
-                'id' => 'datepicker1',
+                'id' => 'date',
                 'require' => 'true',
                 'placeholder' => 'Seleccione una Fecha',
                 'class' => 'gui-input',
@@ -187,56 +195,42 @@ class Confirmar extends Form {
                 'class' => 'form-control gui-input',
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Metodos de Pago',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
         $this->add(array(
             'name' => 'receptor',
             'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
-                'id' => 'productStockStatus',
+                'id' => 'receptor',
                 'class' => 'form-control gui-input',
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Banco Receptor',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
         $this->add(array(
             'name' => 'emisor',
             'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
-                'id' => 'productStockStatus',
+                'id' => 'emisor',
                 'class' => 'form-control gui-input',
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Banco Emisor',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
+
         $this->add(array(
             'name' => 'transferencia',
             'attributes' => array(
                 'type' => 'text',
                 'id' => 'detalle',
                 'require' => 'true',
-                'placeholder' => 'Numero de Transferencia',
+                'placeholder' => 'Numero de Transferencia o Deposito',
                 'class' => 'gui-input',
             ),
         ));
@@ -257,51 +251,25 @@ class Confirmar extends Form {
             'name' => 'tipo',
             'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
-                'id' => 'productStockStatus',
-                'class' => 'form-control gui-input',
+                'id' => 'tipo',
+                'class' => 'form-control gui-input',                
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Tipo de Entrega',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
         $this->add(array(
             'name' => 'encomienda',
             'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
-                'id' => 'productStockStatus',
+                'id' => 'encomienda',
                 'class' => 'form-control gui-input',
+                'disabled' => 'disabled',
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Servicio de Encomienda',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
-            )
-        ));
-        $this->add(array(
-            'name' => 'envio',
-            'type' => 'Zend\Form\Element\Select',
-            'attributes' => array(
-                'id' => 'productStockStatus',
-                'class' => 'form-control gui-input',
-            ),
-            'options' => array(
-                'empty_option' => 'Modalidad de Envio',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
         $this->add(array(
@@ -316,20 +284,13 @@ class Confirmar extends Form {
         ));
         $this->add(array(
             'name' => 'ciudad',
-            'type' => 'Zend\Form\Element\Select',
             'attributes' => array(
+                'type' => 'text',
                 'id' => 'ciudad',
-                'class' => 'form-control gui-input',
+                'require' => 'true',
+                'placeholder' => 'Ciudad',
+                'class' => 'gui-input',
             ),
-            'options' => array(
-                'empty_option' => 'Ciudad',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
-            )
         ));
         $this->add(array(
             'name' => 'estado',
@@ -339,13 +300,8 @@ class Confirmar extends Form {
                 'class' => 'form-control gui-input',
             ),
             'options' => array(
+                'disable_inarray_validator' => true,
                 'empty_option' => 'Estado',
-                'value_options' => array(
-                    '1' => 'Available',
-                    '2' => 'Unavailable',
-                    '3' => 'Discontinued',
-                    '4' => 'Out of Stock',
-                )
             )
         ));
         $this->add(array(
@@ -353,7 +309,6 @@ class Confirmar extends Form {
             'attributes' => array(
                 'type' => 'text',
                 'id' => 'observaciones',
-                'require' => 'true',
                 'placeholder' => 'Observaciones',
                 'class' => 'gui-input',
             ),
